@@ -1,0 +1,315 @@
+{% extends 'layout.html' %}{% block custom_styles %}
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" />
+<link href="../static/css/nav.css" rel="stylesheet" />
+<link href="../static/css/styles.css" rel="stylesheet" />
+{% endblock %} {% block title %}Buy your tickets{% endblock %} {% block
+custom_styles %} <link rel="stylesheet" href="../static/css/nav.css" />{%
+endblock %} {% block content %}
+<!-- Form-->
+<section class="page-section" id="services">
+  <div class="container p-3 col-lg-12 col-12 mx-auto">
+    <form
+      class="custom-form contact-form bg-white shadow-lg"
+      action="#"
+      method="post"
+      role="form"
+    >
+      <h2>Comprar tiquete</h2>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-3">
+          <select
+            class="form-control py-0 px-2"
+            aria-label="Default select example"
+          >
+            <option selected>Seleccione su Ruta</option>
+            <option value="1">Ruta 1</option>
+            <option value="2">Ruta 2</option>
+            <option value="3">Ruta 3</option>
+          </select>
+        </div>
+        <div class="col-lg-3 col-md-3 col-3">
+          <input
+            type="text"
+            name="apellido"
+            id="apellido"
+            class="form-control"
+            required=""
+            placeholder="Fecha de viaje"
+            onfocus="(this.type='date')"
+            onblur="(this.type='text')"
+          />
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-3">
+          <input
+            type="text"
+            name="cantidad"
+            id="cantidad"
+            class="form-control"
+            placeholder="Cantidad"
+            required=""
+          />
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-3">
+          <button type="submit" class="form-control">Comprar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--div class="container px-4 px-lg-5">
+    <div class="row">
+      <div class="col-md-3"-->
+  <!--Filter list-->
+  <!--div class="filter-list">
+          <h5>Filtrar por:</h5>
+        </div>
+        <div class="filter-wrapper">
+          <div class="filter-box">
+            <h3>
+              <span class="line label" style="width: 100px">Empresas:</span>
+            </h3>
+            <ul>
+              <li>
+                <span class="line label" style="width: 140px">x</span>
+              </li>
+              <li>
+                <span class="line label" style="width: 140px">x</span>
+              </li>
+            </ul>
+          </div>
+          <div class="filter-box">
+            <h3>
+              <span class="line label" style="width: 100px">Tipo de bus:</span>
+            </h3>
+            <ul>
+              <li>
+                <span class="line label" style="width: 140px">x</span>
+              </li>
+              <li>
+                <span class="line label" style="width: 140px">x</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="trip-result border-1 my-3">
+          <div class="row trip-row">
+            <div class="col-sm-12 col-md-2 travel-operator">
+              <span
+                class="line label"
+                style="margin: 0 auto; width: 120px; height: 40px"
+                >Empresa</span
+              >
+            </div>
+            <div class="col-md-2 trip-info-box text-center">
+              <h4>
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 80px; height: 18px"
+                  >Salida</span
+                >
+              </h4>
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 90px"
+                  >9:30</span
+                >x</span
+              >
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 60px"
+                  >x</span
+                >x</span
+              >
+            </div>
+            <div class="trip-info-box col-md-2">
+              <div class="travel-services text-center">
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 60px"
+                  >x</span
+                >
+                <div class="bus-service-container">
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 trip-info-box text-center">
+              <h4>
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 80px; height: 18px"
+                  >x</span
+                >
+              </h4>
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 90px"
+                  >x</span
+                >x</span
+              >
+            </div>
+            <div class="col-md-2 trip-info-box text-center">
+              <h4>
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 80px; height: 18px"
+                  >x</span
+                >
+              </h4>
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 90px"
+                  >x</span
+                >x</span
+              >
+            </div>
+            <div class="col-md-2 booking trip-price text-center">
+              <div
+                class="line label"
+                style="margin: 0 auto 2px auto; height: 20px"
+              ></div>
+              <div class="line input" style="height: 28px; width: 100%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-result border-1 my-3">
+          <div class="row trip-row">
+            <div class="col-sm-12 col-md-2 travel-operator">
+              <span
+                class="line label"
+                style="margin: 0 auto; width: 120px; height: 40px"
+                >Empresa</span
+              >
+            </div>
+            <div class="col-md-2 trip-info-box text-center">
+              <h4>
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 80px; height: 18px"
+                  >Salida</span
+                >
+              </h4>
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 90px"
+                  >9:30</span
+                >x</span
+              >
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 60px"
+                  >x</span
+                >x</span
+              >
+            </div>
+            <div class="trip-info-box col-md-2">
+              <div class="travel-services text-center">
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 60px"
+                  >x</span
+                >
+                <div class="bus-service-container">
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                  <span
+                    class="line label"
+                    style="margin: 0 2px 0 0; width: 13px"
+                    >x</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 trip-info-box text-center">
+              <h4>
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 80px; height: 18px"
+                  >x</span
+                >
+              </h4>
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 90px"
+                  >x</span
+                >x</span
+              >
+            </div>
+            <div class="col-md-2 trip-info-box text-center">
+              <h4>
+                <span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 80px; height: 18px"
+                  >x</span
+                >
+              </h4>
+              <span class="subtitle"
+                ><span
+                  class="line label"
+                  style="margin: 0 auto 2px auto; width: 90px"
+                  >x</span
+                >x</span
+              >
+            </div>
+            <div class="col-md-2 booking trip-price text-center">
+              <div
+                class="line label"
+                style="margin: 0 auto 2px auto; height: 20px"
+              ></div>
+              <div class="line input" style="height: 28px; width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div-->
+</section>
+{% endblock %} {% block custom_js %}
+<script src="../static/js/scripts.js"></script>
+{% endblock %}

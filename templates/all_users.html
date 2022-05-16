@@ -1,0 +1,62 @@
+{% extends 'layout.html' %} {% block custom_styles %}
+<link href="../static/css/nav.css" rel="stylesheet" />
+<link href="../static/css/styles.css" rel="stylesheet" />
+{% endblock %} {% block title %}Users{% endblock %} {% block content %}
+<!-- Tickets-->
+<section class="page-section" id="services">
+  <div class="container px-4 px-lg-5">
+    <h2 class="text-center mt-0">Users</h2>
+    <hr class="divider" />
+    <div class="row gx-4 gx-lg-5">
+      <table id="userTable" class="table table-hover">
+        <thead class="table-primary bg-opacity-50">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{user[0]}}</td>
+            <td>{{user[1]}}</td>
+            <td>{{user[2]}}</td>
+            <td>{{user[3]}}</td>
+            <td>{{user[4]}}</td>
+            <td>
+              <div class="row p-0">
+                <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+                <a
+                  class="btn btn-success col mx-1"
+                  href="/users/edit/{{user[0]}}"
+                  ><span
+                    class="iconify fs-20"
+                    data-icon="clarity:pencil-solid"
+                  ></span
+                ></a>
+                <a
+                  class="btn btn-danger col mx-1"
+                  href="/users/delete/{{user[0]}}"
+                  ><span class="iconify fs-20" data-icon="bi:trash-fill"></span
+                ></a>
+              </div>
+            </td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- Call to action-->
+<section class="page-section bg-dark text-white">
+  <div class="container px-4 px-lg-5 text-center">
+    <h2 class="mb-4">Los tiquetes más baratos que encontrarás!</h2>
+    <a class="btn btn-light btn-xl" href="/buy-tickets">Compralos ahora!</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'layout.html' %} {% block custom_styles %}
+<link href="../static/css/nav.css" rel="stylesheet" />
+<link href="../static/css/styles.css" rel="stylesheet" />
+{% endblock %} {% block title %}Buses{% endblock %} {% block content %}
+<!-- Tickets-->
+<section class="page-section" id="services">
+  <div class="container px-4 px-lg-5">
+    <h2 class="text-center mt-0">Buses</h2>
+    <hr class="divider" />
+    <div class="row gx-4 gx-lg-5">
+      <table id="busTable" class="table table-hover">
+        <thead class="table-primary bg-opacity-50">
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Capacidad</th>
+            <th>Empresa</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bus in buses %}
+          <tr>
+            <td>{{bus[0]}}</td>
+            <td>{{bus[1]}}</td>
+            <td>{{bus[2]}}</td>
+            <td>{{bus[3]}}</td>
+            <td>
+              <div class="row p-0">
+                <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+                <a
+                  class="btn btn-success col mx-1"
+                  href="/buss/edit/{{bus[0]}}"
+                  ><span
+                    class="iconify fs-20"
+                    data-icon="clarity:pencil-solid"
+                  ></span
+                ></a>
+                <a
+                  class="btn btn-danger col mx-1"
+                  href="/buss/delete/{{bus[0]}}"
+                  ><span class="iconify fs-20" data-icon="bi:trash-fill"></span
+                ></a>
+              </div>
+            </td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- Call to action-->
+<section class="page-section bg-dark text-white">
+  <div class="container px-4 px-lg-5 text-center">
+    <h2 class="mb-4">Los tiquetes más baratos que encontrarás!</h2>
+    <a class="btn btn-light btn-xl" href="/buy-tickets">Compralos ahora!</a>
+  </div>
+</section>
+{% endblock %}

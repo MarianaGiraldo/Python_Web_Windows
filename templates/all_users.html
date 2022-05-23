@@ -1,11 +1,11 @@
 {% extends 'layout.html' %} {% block custom_styles %}
 <link href="../static/css/nav.css" rel="stylesheet" />
 <link href="../static/css/styles.css" rel="stylesheet" />
-{% endblock %} {% block title %}Users{% endblock %} {% block content %}
-<!-- Tickets-->
+{% endblock %} {% block title %}Usuarios{% endblock %} {% block content %}
+<!-- Users-->
 <section class="page-section" id="services">
   <div class="container px-4 px-lg-5">
-    <h2 class="text-center mt-0">Users</h2>
+    <h2 class="text-center mt-0">Usuarios</h2>
     <hr class="divider" />
     <div class="row gx-4 gx-lg-5">
       <table id="userTable" class="table table-hover">
@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for user in users %}
+          {% if users != none %} {% for user in users %}
           <tr>
             <td>{{user[0]}}</td>
             <td>{{user[1]}}</td>
@@ -46,9 +46,12 @@
               </div>
             </td>
           </tr>
-          {% endfor%}
+          {% endfor%} {% endif%}
         </tbody>
       </table>
+      <a class="btn btn-primary mx-1 rounded w-auto mx-auto" href="/register"
+        >Insertar usuario <i class="bi bi-plus-circle-fill"></i></span
+      ></a>
     </div>
   </div>
 </section>

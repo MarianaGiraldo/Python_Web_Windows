@@ -1,12 +1,13 @@
 {% extends 'layout.html' %}{% block custom_styles %}
+<link href="../../static/css/nav.css" rel="stylesheet" />
+<link href="../../static/css/styles.css" rel="stylesheet" />
 <!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" />
-<link href="../static/css/nav.css" rel="stylesheet" />
-<link href="../static/css/styles.css" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="../../static/img/favicon.ico" />
 {% endblock %} {% block title %}Buy your tickets{% endblock %} {% block content
 %}
 <!-- Form-->
 <section class="page-section" id="services">
+  {% if ticket != none %}
   <div class="container p-3 col-lg-12 col-12 mx-auto">
     <form
       class="custom-form contact-form bg-white shadow-lg"
@@ -14,39 +15,38 @@
       method="post"
       role="form"
     >
-      <h2>Comprar tiquete</h2>
+      <h2>Editar tiquete {{ticket[0]}}</h2>
 
       <div class="row">
         <div class="col-lg-3 col-md-3 col-3">
           <select
             class="form-control py-0 px-2"
-            aria-label="routes"
-            name="route">
+            id="routes"
+            name="route"
+          >
             <option selected disabled>Seleccione su Ruta</option>
             {% if routes != none %} {% for route in routes %}
-              <option value="{{route[0]}}">{{route[1]}} - {{route[2]}}</option>
+            <option value="{{route[0]}}">{{route[1]}} - {{route[2]}}</option>
             {% endfor %} {% endif %}
           </select>
         </div>
         <div class="col-lg-3 col-md-3 col-3">
-          <select
-            class="form-control py-0 px-2"
-            aria-label="buses"
-            name="bus">
+          <select class="form-control py-0 px-2" id="buses" name="bus">
             <option selected disabled>Seleccione su Bus</option>
             {% if buses != none %} {% for bus in buses %}
-              <option value="{{bus[0]}}">{{bus[1]}} - {{bus[2]}}</option>
+            <option value="{{bus[0]}}">{{bus[1]}} - {{bus[2]}}</option>
             {% endfor %} {% endif %}
           </select>
         </div>
         <div class="col-lg-3 col-md-3 col-3">
           <select
             class="form-control py-0 px-2"
-            aria-label="users"
-            name="passenger">
+            id="users"
+            name="passenger"
+          >
             <option selected disabled>Seleccione el pasajero</option>
             {% if users != none %} {% for user in users %}
-              <option value="{{user[0]}}">{{user[1]}} - {{user[2]}}</option>
+            <option value="{{user[0]}}">{{user[1]}} - {{user[2]}}</option>
             {% endfor %} {% endif %}
           </select>
         </div>
@@ -60,17 +60,18 @@
             placeholder="Fecha de viaje"
             onfocus="(this.type='date')"
             onblur="(this.type='text')"
+            value="{{ticket[5]}}"
           />
         </div>
         <div class="col-lg-3 col-md-3 col-3">
           <input
-            type="text"
+            type="time"
             name="departure_time"
             id="departure_time"
             class="form-control"
             required=""
             placeholder="Hora de salida"
-            onfocus="(this.type='time')"
+            value="{{ticket[6]}}"
           />
         </div>
 
@@ -82,18 +83,24 @@
             class="form-control"
             placeholder="Cantidad"
             required=""
-            min=1
+            min="1"
+            value="{{ticket[4]}}"
           />
         </div>
 
         <div class="col-lg-3 col-md-3 col-3 pb-1">
-          <button type="submit" class="form-control pt-2">Comprar</button>
+          <button type="submit" class="form-control pt-2">Editar</button>
         </div>
       </div>
     </form>
   </div>
-
+  {% block custom_js %}
+  <script src="../static/js/scripts.js"></script>
+  <script>
+    $('#routes option[value="{{ ticket[1] }}"]').attr('selected', 'true')
+    $('#buses option[value="{{ ticket[2] }}"]').attr('selected', 'true')
+    $('#users option[value="{{ ticket[3] }}"]').attr('selected', 'true')
+</script>
+  {% endblock %} {% endif %}
 </section>
-{% endblock %} {% block custom_js %}
-<script src="../static/js/scripts.js"></script>
 {% endblock %}

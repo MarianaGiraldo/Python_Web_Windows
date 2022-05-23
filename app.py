@@ -1,6 +1,9 @@
+import queue
 from flask import Flask, render_template, request, redirect
 import UserController
 import busController
+import ticketController
+import routeController
 
 app = Flask(__name__)
 
@@ -22,18 +25,57 @@ def contactus(num):
 
 @app.route('/routes')
 def routes():
-    return render_template('show_routes.html')
+    routes = routeController.selectRoutes()
+    return render_template('all_routes.html', routes =  routes)
 
 
 @app.route('/all-tickets')
 def all_tickets():
-    return render_template('show_tickets.html')
+    tickets = ticketController.selectTickets()
+    return render_template('all_tickets.html', tickets = tickets, controller = routeController)
 
 
-@app.route('/buy-tickets')
+@app.route('/buy-tickets', methods=['GET', 'POST'])
 def buy_tickets():
-    return render_template('buy_tickets.html')
+    if request.method == 'POST':
+        route = request.form['route']
+        bus = request.form['bus']
+        route_bus_id = routeController.getRouteBusById(route, bus)[0]
+        passenger_id = request.form['passenger']
+        quantity = request.form['quantity']
+        travel_date = request.form['travel_date']
+        departure_time = request.form['departure_time']
+        ticketController.insertTicket(route_bus_id, passenger_id, quantity, travel_date, departure_time)
+        return redirect('/all-tickets')
+    elif request.method == 'GET':
+        routes = routeController.selectRoutes()
+        buses = busController.selectBuses()
+        users = UserController.selectUsers()
+        return render_template('buy_tickets.html', routes = routes, buses = buses, users = users)
 
+@app.route('/tickets/edit/<int:id>', methods=['GET', 'POST'])
+def editTicket(id):
+    if request.method == 'POST':
+        route = request.form['route']
+        bus = request.form['bus']
+        route_bus_id = routeController.getRouteBusById(route, bus)[0]
+        passenger_id = request.form['passenger']
+        quantity = request.form['quantity']
+        travel_date = request.form['travel_date']
+        departure_time = request.form['departure_time']
+        ticketController.editTicket(route_bus_id, passenger_id, quantity, travel_date, departure_time, id)
+        return redirect('/all-tickets')
+    elif request.method == 'GET':
+        ticket = ticketController.getTicketById(id)
+        routes = routeController.selectRoutes()
+        buses = busController.selectBuses()
+        users = UserController.selectUsers()
+        return render_template('edit_ticket.html', ticket = ticket, routes = routes, buses = buses, users = users)
+
+@app.route('/tickets/delete/<int:id>')
+def deleteTicket(id):
+    ticketController.deleteTicketById(id)
+    return redirect('/all-tickets')
 
 @app.route('/register')
 def register():
@@ -82,8 +124,26 @@ def insertBuses():
     
 @app.route('/buses', methods=['GET', 'POST'])
 def allBuses():
-    buses =busController.selectBuses()
+    buses = busController.selectBuses()
     return render_template('all_buses.html', buses = buses)
+
+@app.route('/buses/edit/<int:id>', methods=['GET', 'POST'])
+def editBus(id):
+    if request.method == 'POST':
+            plate = request.form['plate']
+            type = request.form['type']
+            capacity = request.form['capacity']
+            company = request.form['company']
+            busController.editBus(plate, type, capacity, company, id)
+            return redirect('/buses')
+    elif request.method == 'GET':
+        bus = busController.getBusById(id)
+        return render_template('edit_bus.html', bus = bus)
+
+@app.route('/buses/delete/<int:id>')
+def deleteBus(id):
+    busController.deleteBusById(id)
+    return redirect('/buses')
 
 @app.route('/users/delete/<int:id>')
 def deleteUser(id):

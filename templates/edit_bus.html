@@ -7,6 +7,7 @@
     content %}
     <!-- Buses-->
     <section class="page-section" id="services">
+      {% if bus != none %}
       <div class="container px-4 px-lg-5">
         <h2 class="text-center mt-0">Buses </h2>
         <hr class="divider" />
@@ -16,10 +17,10 @@
                   <div class="form-holder mx-auto">
                     <div class="form-content mx-auto w-50">
                       <div class="form-items">
-                        <h3>Bus:</h3>
+                        <h3>Editar Bus: {{bus[0]}}</h3>
                         <p>Completa los siguientes datos.</p>
                         <form
-                          action="/insert-bus"
+                          action="#"
                           method="POST"
                           class="requires-validation"
                           novalidate
@@ -31,7 +32,7 @@
                               type="text"
                               name="plate"
                               placeholder="Placa"
-                              value = ""
+                              value = "{{bus[1]}}"
                               required
                             />
                             <div class="valid-feedback">
@@ -49,7 +50,7 @@
                               type="text"
                               name="type"
                               placeholder="Tipo"
-                              value = ""
+                              value = "{{bus[2]}}"
                               required
                             />
                             <div class="valid-feedback">
@@ -67,7 +68,7 @@
                               type="number"
                               name="capacity"
                               placeholder="Capacidad"
-                              value = ""
+                              value = "{{bus[3]}}"
                               required
                             />
                             <div class="valid-feedback">
@@ -85,7 +86,7 @@
                               type="text"
                               name="company"
                               placeholder="Empresa"
-                              value = ""
+                              value = "{{bus[4]}}"
                               required
                             />
                             <div class="valid-feedback">
@@ -109,7 +110,7 @@
                             >
                             <div class="invalid-feedback">
                               Por favor confirme que todos los datos ingresados sean
-                              corrrectos!
+                              correctos!
                             </div>
                           </div>
         
@@ -126,6 +127,7 @@
               </div>
         </div>
       </div>
+      {% endif %}
     </section>
     {% endblock %}
     {% block custom_js %}

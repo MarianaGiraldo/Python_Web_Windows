@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} {% block custom_styles %}
+<link href="../static/css/nav.css" rel="stylesheet" />
+<link href="../static/css/styles.css" rel="stylesheet" />
+{% endblock %} {% block title %}Rutas{% endblock %} {% block content %}
+<!-- Routes-->
+<section class="page-section" id="services">
+  <div class="container px-4 px-lg-5">
+    <h2 class="text-center mt-0">Rutas</h2>
+    <hr class="divider" />
+    <div class="row gx-4 gx-lg-5">
+      <table id="routeTable" class="table table-hover">
+        <thead class="table-primary bg-opacity-50">
+          <tr>
+            <th>ID</th>
+            <th>Origen</th>
+            <th>Destino</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if routes != none %} {% for route in routes %}
+          <tr>
+            <td>{{route[0]}}</td>
+            <td>{{route[1]}}</td>
+            <td>{{route[2]}}</td>
+          </tr>
+          {% endfor%} {% endif%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- Call to action-->
+<section class="page-section bg-dark text-white">
+  <div class="container px-4 px-lg-5 text-center">
+    <h2 class="mb-4">Los tiquetes más baratos que encontrarás!</h2>
+    <a class="btn btn-light btn-xl" href="/buy-tickets">Compralos ahora!</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,42 +1,50 @@
 {% extends 'layout.html' %} {% block custom_styles %}
 <link href="../static/css/nav.css" rel="stylesheet" />
 <link href="../static/css/styles.css" rel="stylesheet" />
-{% endblock %} {% block title %}Buses{% endblock %} {% block content %}
-<!-- Buses-->
+{% endblock %} {% block title %}Usuarios{% endblock %} {% block content %}
+<!-- Tickets-->
 <section class="page-section" id="services">
   <div class="container px-4 px-lg-5">
-    <h2 class="text-center mt-0">Buses</h2>
+    <h2 class="text-center mt-0">Tiquetes</h2>
     <hr class="divider" />
     <div class="row gx-4 gx-lg-5">
-      <table id="busTable" class="table table-hover">
+      <table id="ticketsTable" class="table table-hover">
         <thead class="table-primary bg-opacity-50">
           <tr>
             <th>ID</th>
-            <th>Placa</th>
-            <th>Tipo</th>
-            <th>Capacidad</th>
-            <th>Empresa</th>
+            <th>Ruta</th>
+            <th>Bus</th>
+            <th>Pasajero</th>
+            <th>Cantidad</th>
+            <th>Fecha de viaje</th>
+            <th>Hora de salida</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {% if buses != none %} {% for bus in buses %}
+          {% if tickets != none %} {% for ticket in tickets %}
           <tr>
-            <td>{{bus[0]}}</td>
-            <td>{{bus[1]}}</td>
-            <td>{{bus[2]}}</td>
-            <td>{{bus[3]}}</td>
-            <td>{{bus[4]}}</td>
+            <td>{{ticket[0]}}</td>
+            <td>{{ticket[1]}} -> {{ticket[2]}}</td>
+            <td>{{ticket[3]}} / {{ticket[4]}}</td>
+            <td>{{ticket[5]}} - {{ticket[6]}}</td>
+            <td>{{ticket[7]}}</td>
+            <td>{{ticket[8]}}</td>
+            <td>{{ticket[9]}}</td>
             <td>
               <div class="row p-0">
                 <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
-                <a class="btn btn-success col mx-1" href="/buses/edit/{{bus[0]}}"
+                <a
+                  class="btn btn-success col mx-1"
+                  href="/tickets/edit/{{ticket[0]}}"
                   ><span
                     class="iconify fs-20"
                     data-icon="clarity:pencil-solid"
                   ></span
                 ></a>
-                <a class="btn btn-danger col mx-1" href="/buses/delete/{{bus[0]}}"
+                <a
+                  class="btn btn-danger col mx-1"
+                  href="/tickets/delete/{{ticket[0]}}"
                   ><span class="iconify fs-20" data-icon="bi:trash-fill"></span
                 ></a>
               </div>
@@ -45,8 +53,8 @@
           {% endfor%} {% endif%}
         </tbody>
       </table>
-      <a class="btn btn-primary mx-1 rounded w-auto mx-auto" href="/insert-bus"
-        >Insertar bus <i class="bi bi-plus-circle-fill"></i></span
+      <a class="btn btn-primary mx-1 rounded w-auto mx-auto" href="/buy-tickets"
+        >Comprar tiquete <i class="bi bi-plus-circle-fill"></i></span
       ></a>
     </div>
   </div>
